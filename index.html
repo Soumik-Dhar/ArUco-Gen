@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="An ArUco marker generator for creating markers with fixed and random IDs. You can even generate a set of 500 markers all at once! Try ArUco-Gen today!">
+  <meta name="keywords" content="aruco, ARuco, ArUco, ARUCO, marker, markers, fiducial, gen, generator, generators, AR">
+  <meta name="author" content="Soumik Dhar">
+  <title>ArUco-Gen</title>
+  <!-- bootstrap links -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <!-- line awesome icons -->
+  <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+  <!-- google fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Montserrat+Alternates&family=Bungee+Hairline&display=swap" rel="stylesheet">
+  <!-- custom styles -->
+  <link rel="stylesheet" href="public/css/styles.css">
+  <!-- favicon -->
+  <link rel="shortcut icon" href="public/images/favicon.ico">
+</head>
+
+<body class="text-center">
+  <!-- centering horizontally and vertically -->
+  <div class="wrapper d-flex h-100 justify-content-center align-items-center">
+    <div class="row">
+      <!-- left column - user input side -->
+      <div class="column left-col">
+        <!-- accordion container -->
+        <div class="container">
+          <div id="accordion" class="accordion">
+            <div class="card mb-0">
+              <!-- fixed marker header -->
+              <div class="card-header collapsed" data-toggle="collapse" href="#collapseOne">
+                <i class="las la-qrcode"></i>
+                <a class="card-title">Generate an ArUco marker by ID</a>
+              </div>
+              <div id="collapseOne" class="card-body collapse show" data-parent="#accordion">
+                <form class="fixed">
+                  <span>Marker ID:</span>
+                  <input type="number" name="id" value="0" min="0" max="1023">
+                  <span>Marker size:</span>
+                  <input type="number" name="size-form-1" value="400" min="100" max="3780">
+                  <span>Units:</span>
+                  <select name="unit-form-1">
+                    <option value="px">px</option>
+                    <option value="mm">mm</option>
+                    <option value="in">in</option>
+                  </select>
+                  <input class="btn btn-md btn-dark" type="submit" name="submit" value="Generate">
+                </form>
+              </div>
+              <!-- random marker header -->
+              <div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                <i class="las la-random"></i>
+                <a class="card-title">Generate a random ArUco marker</a>
+              </div>
+              <div id="collapseTwo" class="card-body collapse" data-parent="#accordion">
+                <form class="random">
+                  <span>Marker size:</span>
+                  <input type="number" name="size-form-2" value="400" min="100" max="3780">
+                  <span>Units:</span>
+                  <select name="unit-form-2">
+                    <option value="px">px</option>
+                    <option value="mm">mm</option>
+                    <option value="in">in</option>
+                  </select>
+                  <input class="btn btn-md btn-dark" type="submit" name="submit" value="Generate">
+                </form>
+              </div>
+              <!-- collection of markers header -->
+              <div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                <i class="las la-object-group"></i>
+                <a class="card-title">Generate a collection of ArUco markers</a>
+              </div>
+              <div id="collapseThree" class="collapse" data-parent="#accordion">
+                <div class="card-body">
+                  <form class="collection" action="markerGrid.html" method="get" target="_blank">
+                    <span>Number of markers:</span>
+                    <input type=range class="slider" name="quantity" min=10 max=500 value=250 step=5 list="numbers" id='rangeInput' oninput="amount.value=rangeInput.value">
+                    <output id="amount" name="quantity" for="rangeInput">250</output>
+                    <input class="btn btn-md btn-dark" type="submit" name="submit" value="Generate">
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="aruco-gen">
+          <h1><strong>A</strong>R<strong>U</strong>CO-<strong>G</strong>EN</h1>
+        </div>
+      </div>
+      <div class="column right-col">
+        <!-- ArUco marker -->
+        <div class="marker">
+          <!-- insert aruco marker here -->
+          <img class="loading-marker" src="public/images/random-marker-gif.gif" alt="random-aruco-marker-gif" width="100%">
+        </div>
+        <div class="marker-info">
+          <!-- insert marker ID and size here -->
+          <p class="dummy-info">dummy marker ID and size info</p>
+        </div>
+        <!-- dummy download buttons for loading page -->
+        <button type="button" class="btn btn-md btn-dark down dummy">Download<i class="las la-download down-icon"></i></button>
+        <button type="button" class="btn btn-md btn-dark dummy spacer">dummy spacer</button>
+        <!-- download buttons -->
+        <div class="download">
+          <button type="button" class="btn btn-md btn-dark down">Download<i class="las la-download down-icon"></i></button>
+        </div>
+        <!-- download formats -->
+        <div class="btn-group btn-group-md formats">
+          <a class="svg-download btn btn-outline-dark">.SVG</a>
+          <a class="png-download btn btn-outline-dark">.PNG</a>
+          <a class="jpeg-download btn btn-outline-dark">.JPEG</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- canvas for png image -->
+  <canvas id="canvas" style="display:none"></canvas>
+  <!-- jquery and external js scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="marker.js" charset="utf-8"></script>
+  <script src="script.js" charset="utf-8"></script>
+</body>
+
+</html>
