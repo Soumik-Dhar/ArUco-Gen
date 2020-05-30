@@ -1,10 +1,15 @@
 # ArUco-Gen
 
-A powerful ArUco marker generator for  fiducial markers with fixed and random IDs. It can even generate upto 500 markers all at once!
+A powerful ArUco marker generator for creating fiducial markers with fixed and random IDs. It can even generate upto 500 markers all at once!
 ---
-[![landing-page-image](public/images/landing-page.gif)]()
+[![landing-page-image](public/images/landing-page.gif)](https://aruco-gen.netlify.app/)
+
+Check out the **ArUco-Gen** website here -> [https://aruco-gen.netlify.app/](https://aruco-gen.netlify.app/)
+
+---
 
 ### Features
+Built using Bootstrap and JavaScript (with jQuery on top), ArUco-Gen offers the following features -
 * #### Generate markers with custom IDs
 
 ![fixed-marker-generation](public/images/fixed-markers.jpg)
@@ -26,18 +31,18 @@ From the command line, execute the following:
 
 ```bash
 # Clone this repository
-$ git clone
+$ git clone https://github.com/Soumik-Dhar/ArUco-Gen.git/
 ```
 ```bash
 # Go into the repository
-$ cd ArUco-Gen
+$ cd ArUco-Gen/
 ```
 ```bash
 # Launch index.html on your browser
 $ start index.html # On Windows
 $ open index.html # On Linux/Mac
 ```
-Generate some ArUco markers by visiting the website here -> [ArUco-Gen]()
+Generate some ArUco markers by visiting the website here -> [ArUco-Gen](https://aruco-gen.netlify.app/)
 
 ---
 ### License
